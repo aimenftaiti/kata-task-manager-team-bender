@@ -1,5 +1,6 @@
 from typing import Dict
 from task_manager.task import Task
+from task_manager.ui import UI
 
 class TaskManager:
     def __init__(self) -> None:
@@ -47,3 +48,12 @@ class TaskManager:
         else:
             raise ValueError("Unknown command")
     
+    def read_command(self) -> None:
+        ui = UI()
+        command = ui.interactor.read_input()
+        try:
+            type = self.parse_command(command)["type"]
+            if type == "quit":
+                exit(0)
+        except ValueError as e:
+            ui.interactor.print_error(e)
