@@ -33,3 +33,9 @@ def test_task_manager_can_parse_done_task_command():
     task_manager.parse_command("+ Learn Python")
     task_manager.parse_command("x 1")
     assert task_manager.tasks[0].status == "done"
+
+def test_task_manager_can_parse_todo_task_command():
+    task_manager = TaskManager()
+    task_manager.parse_command("+ Learn Python")
+    task_manager.parse_command("o 1")
+    assert task_manager.tasks[0].status == "to do"
