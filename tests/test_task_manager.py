@@ -42,5 +42,5 @@ def test_task_manager_can_parse_todo_task_command():
 
 def test_task_manager_can_parse_quit_task_command():
     task_manager = TaskManager()
-    with pytest.raises(TaskManagerExit):
-        task_manager.parse_command("q")
+    type = task_manager.parse_command("q")["type"]
+    assert type == "quit"
