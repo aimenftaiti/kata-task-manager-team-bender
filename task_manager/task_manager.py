@@ -2,6 +2,7 @@ from typing import Dict
 from task_manager.task import Task
 from task_manager.ui import UI
 
+
 class TaskManager:
     def __init__(self) -> None:
         self.tasks = []
@@ -12,19 +13,19 @@ class TaskManager:
         self.tasks.append(task)
         self.counter += 1
 
-    def remove_task(self, id) -> None:
-        id = int(id)
+    def remove_task(self, task_id) -> None:
+        task_id = int(task_id)
         for task in self.tasks:
-            if task.id == id:
+            if task.id == task_id:
                 self.tasks.remove(task)
                 break
         else:
             raise ValueError("Unknown task id")
-        
-    def change_task_status(self, id, status) -> None:
-        id = int(id)
+
+    def change_task_status(self, task_id, status) -> None:
+        task_id = int(task_id)
         for task in self.tasks:
-            if task.id == id:
+            if task.id == task_id:
                 task.status = status
                 break
         else:
@@ -47,13 +48,13 @@ class TaskManager:
             return {"type": "quit"}
         else:
             raise ValueError("Unknown command")
-    
+
     def read_command(self) -> None:
         ui = UI()
         command = ui.interactor.read_input()
         try:
-            type = self.parse_command(command)["type"]
-            if type == "quit":
+            command_type = self.parse_command(command)["type"]
+            if command_type == "quit":
                 exit(0)
         except ValueError as e:
             ui.interactor.print_error(e)
