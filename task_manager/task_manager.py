@@ -18,11 +18,22 @@ class TaskManager:
                 break
         else:
             raise ValueError("Unknown task id")
+        
+    def change_task_status(self, id, status) -> None:
+        id = int(id)
+        for task in self.tasks:
+            if task.id == id:
+                task.status = status
+                break
+        else:
+            raise ValueError("Unknown task id")
 
     def parse_command(self, command) -> None:
         if command.startswith("+ "):
             self.add_task(command[2:], "to do")
         elif command.startswith("- "):
             self.remove_task(command[2:])
+        elif command.startswith("x "):
+            self.change_task_status(command[2:], "done")
         else:
             raise ValueError("Unknown command")
