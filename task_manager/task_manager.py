@@ -1,6 +1,5 @@
 from task_manager.task import Task
 
-
 class TaskManager:
     def __init__(self) -> None:
         self.tasks = []
@@ -11,9 +10,8 @@ class TaskManager:
         self.tasks.append(task)
         self.counter += 1
 
-    def read_command(self, command) -> None:
+    def parse_command(self, command) -> None:
         if command.startswith("+ "):
             self.add_task(command[2:], "to do")
-        # TODO: else if:
         else:
             raise ValueError("Unknown command")

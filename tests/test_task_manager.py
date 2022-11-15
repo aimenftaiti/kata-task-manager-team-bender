@@ -15,15 +15,15 @@ def test_task_manager_add_task():
     assert task_manager.tasks[0].description == "description"
     assert task_manager.tasks[0].status == "to do"
 
-def test_task_manager_can_read_add_task_command():
+def test_task_manager_can_parse_add_task_command():
     task_manager = TaskManager()
-    task_manager.read_command("+ Learn Python")
+    task_manager.parse_command("+ Learn Python")
     assert task_manager.tasks[0].description == "Learn Python"
     assert task_manager.tasks[0].status == "to do"
     assert task_manager.tasks[0].id == 1
 
-def test_task_manager_can_read_remove_task_command():
+def test_task_manager_can_parse_remove_task_command():
     task_manager = TaskManager()
-    task_manager.read_command("+ Learn Python")
-    task_manager.read_command("- 1")
+    task_manager.parse_command("+ Learn Python")
+    task_manager.parse_command("- 1")
     assert task_manager.tasks == []
