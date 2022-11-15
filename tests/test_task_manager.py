@@ -39,3 +39,8 @@ def test_task_manager_can_parse_todo_task_command():
     task_manager.parse_command("+ Learn Python")
     task_manager.parse_command("o 1")
     assert task_manager.tasks[0].status == "to do"
+
+def test_task_manager_can_parse_quit_task_command():
+    task_manager = TaskManager()
+    with pytest.raises(TaskManagerExit):
+        task_manager.parse_command("q")
