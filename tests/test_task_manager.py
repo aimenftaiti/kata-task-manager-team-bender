@@ -14,3 +14,10 @@ def test_task_manager_add_task():
     task_manager.add_task("description", "to do")
     assert task_manager.tasks[0].description == "description"
     assert task_manager.tasks[0].status == "to do"
+
+def test_task_manager_can_read_add_task_command():
+    task_manager = TaskManager()
+    task_manager.read_command("+ Learn Python")
+    assert task_manager.tasks[0].description == "Learn Python"
+    assert task_manager.tasks[0].status == "to do"
+    assert task_manager.tasks[0].id == 1
