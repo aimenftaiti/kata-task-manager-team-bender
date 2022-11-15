@@ -35,5 +35,7 @@ class TaskManager:
             self.remove_task(command[2:])
         elif command.startswith("x "):
             self.change_task_status(command[2:], "done")
+        elif command.startswith("o "):
+            self.change_task_status(command[2:], "to do")
         else:
             raise ValueError("Unknown command")
